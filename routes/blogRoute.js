@@ -9,10 +9,6 @@ const router= express.Router();
 // POST:    http://localhost:5000/api/blog
 router.post("/", authMiddleware, isAdmin, createBlog)
 
-
-router.put("/upload/:id", authMiddleware, isAdmin, uploadPhoto.array("images", 2), blogImgResize, uploadImages)
-
-
 // PUT:     http://localhost:5000/api/blog/likes
 router.put("/likes", authMiddleware, liketheBlog)
 

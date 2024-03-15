@@ -184,33 +184,8 @@ const rating= asyncHandler(async(req, res)=>{
 
 
 
-const uploadImages = asyncHandler(async (req, res) => {
-    
-    try {
-        const uploader = (path) => cloudinaryUploadImg(path, "images");
-        const urls = [];
-        const files = req.files;
-        for (const file of files) {
-            const { path } = file;
-            const newPath = await uploader(path);
-            urls.push(newPath.url);
-            fs.unlink(path, (err) => {
-                if (err) {
-                    console.error('Error d  eleting file:', err);
-                } else {
-                    console.log('File deleted successfully:', path);
-                }
-            });
-        }
-        const images= urls.map((file)=>{
-            return file;
-        })
-        res.json(images);
-    } catch (error) {
-        throw new Error(error);
-    }
-});
 
 
 
-module.exports={createProduct, getaProduct, getAllProduct, updateProduct, deleteProduct, addToWishList, rating, uploadImages};
+
+module.exports={createProduct, getaProduct, getAllProduct, updateProduct, deleteProduct, addToWishList, rating};
